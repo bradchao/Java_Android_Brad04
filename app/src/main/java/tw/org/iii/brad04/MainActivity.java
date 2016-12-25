@@ -1,6 +1,7 @@
 package tw.org.iii.brad04;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -44,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void end(View v){
         finish();
+    }
+    public void startMyService(View v){
+        Intent it = new Intent(this, MyService.class);
+        startService(it);
     }
 
     @Override
