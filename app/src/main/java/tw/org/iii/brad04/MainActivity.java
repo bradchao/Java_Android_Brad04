@@ -50,7 +50,10 @@ public class MainActivity extends AppCompatActivity {
         Intent it = new Intent(this, MyService.class);
         startService(it);
     }
-
+    public void stopMyService(View v){
+        Intent it = new Intent(this, MyService.class);
+        stopService(it);
+    }
     @Override
     public void finish() {
 //        if (System.currentTimeMillis()-lastexit<3*1000) {

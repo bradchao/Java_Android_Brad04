@@ -8,7 +8,6 @@ import android.util.Log;
 public class MyService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
         //throw new UnsupportedOperationException("Not yet implemented");
         return null;
     }
@@ -16,18 +15,18 @@ public class MyService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.v("brad", "onCreate");
+        Log.v("brad", "MyService:onCreate");
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.v("brad", "onStartCommand");
+        Log.v("brad", "MyService:onStartCommand");
         return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.v("brad", "onDestroy");
+        Log.v("brad", "MyService:onDestroy");
     }
 }
