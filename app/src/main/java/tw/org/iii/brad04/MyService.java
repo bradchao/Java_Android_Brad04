@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -29,7 +32,17 @@ public class MyService extends Service {
     private class MyTask extends TimerTask {
         @Override
         public void run() {
-            Log.v("brad", "i = " + i++);
+            try {
+                URL url = new URL("http://10.0.2.2:8080/BradWeb/Brad91.jsp?lat=11&lng=22");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.connect();
+                conn.getInputStream();
+
+            } catch (Exception e) {
+                Log.v("brad", e.toString());
+            }
+
+
         }
     }
 
