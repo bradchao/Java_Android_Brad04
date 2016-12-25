@@ -1,5 +1,7 @@
 package tw.org.iii.brad04;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +10,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private int count = 0;
+    private long lastexit;
+    private AlertDialog alert;
 
     public MainActivity(){
         Log.v("brad", "MainActivity");
@@ -17,7 +21,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.v("brad", "onCreate");
+        lastexit = System.currentTimeMillis();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Warn");
+        builder.setMessage("Exit?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                MainActivity.super.finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        alert = builder.create();
+
     }
 
     public void end(View v){
@@ -26,12 +48,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void finish() {
-        count++;
-        if (count>=2) {
-            super.finish();
-        }else{
-            Toast.makeText(this, "再按一次確定結束", Toast.LENGTH_SHORT).show();
-        }
+//        if (System.currentTimeMillis()-lastexit<3*1000) {
+//            super.finish();
+//        }else{
+//            lastexit = System.currentTimeMillis();
+//            Toast.makeText(this, "再按一次確定結束", Toast.LENGTH_SHORT).show();
+//        }
+        alert.show();
+
+
     }
 
     @Override
