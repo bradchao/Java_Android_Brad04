@@ -4,8 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    private int count = 0;
 
     public MainActivity(){
         Log.v("brad", "MainActivity");
@@ -24,8 +26,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void finish() {
-        //super.finish();
-        Log.v("brad", "finish");
+        count++;
+        if (count>=2) {
+            super.finish();
+        }else{
+            Toast.makeText(this, "再按一次確定結束", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
